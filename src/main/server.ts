@@ -9,7 +9,7 @@ import { createWebSocketRouter } from '../routes/webSocketRouter'
 
 const app = express()
 app.use(cors())
-app.use(express.json()) 
+app.use(express.json())
 
 app.get('/', (_req, res) => res.send('socket.io chat backend is running ;)'))
 
@@ -18,7 +18,6 @@ app.use('/api', createWebSocketRouter(roomService))
 
 const server = http.createServer(app)
 const io = new Server(server, { cors: { origin: '*' } })
-
 
 io.on('connection', (socket) => {
   console.log('⚡ Novo cliente conectado:', socket.id)
