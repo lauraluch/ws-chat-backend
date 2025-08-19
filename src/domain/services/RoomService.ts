@@ -1,7 +1,7 @@
 import { Room } from '../entities/Room'
 import { User } from '../entities/User'
 import { Message } from '../entities/Message'
-import { generateCommonId } from '../../presentation/utils/generateCommonId'
+import { generateCommonId } from '../../utils/generateCommonId'
 
 export class RoomService {
   private rooms = new Map<string, Room>()

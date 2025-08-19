@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io'
 import { RoomService } from '../../domain/services/RoomService'
-import { generateRoomCode } from '../../presentation/utils/generateRoomCode'
+import { generateRoomCode } from '../../utils/generateRoomCode'
 
 export function registerRoomHandlers(io: Server, socket: Socket, roomService: RoomService) {
   function emitRoomState(roomCode: string) {
