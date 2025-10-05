@@ -5,6 +5,7 @@ export type Room = {
   code: string
   ownerId: string
   ownerName: string
+  ownerSocketId: string
   users: Map<string, User>
   messages: Message[]
 }
