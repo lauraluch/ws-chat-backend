@@ -56,6 +56,7 @@ export class RoomService {
     const message: Message = {
       id: generateCommonId(),
       userId: user.userId,
+      userSocketId: user.socketId,
       username: user.username,
       text,
       timestamp: Date.now(),

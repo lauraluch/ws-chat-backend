@@ -1,6 +1,6 @@
 export function generateRoomCode(): string {
   const chars = 'abcdefghijklmnopqrstuvwxyz0123456789'
-  const blockLength = 6
+  const blockLength = 4
   const blockCount = 3
 
   const randomBlock = () =>
