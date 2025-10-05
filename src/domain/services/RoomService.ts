@@ -20,7 +20,8 @@ export class RoomService {
   createRoom(code: string, ownerSocketId: string, ownerName: string, user: User): Room {
     const room: Room = {
       code,
-      ownerId: ownerSocketId,
+      ownerId: generateCommonId(),
+      ownerSocketId,
       ownerName,
       users: new Map<string, User>([[ownerSocketId, user]]),
       messages: [],

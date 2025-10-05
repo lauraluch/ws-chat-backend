@@ -1,11 +1,12 @@
 export function generateRoomCode(): string {
-  const alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789'
-  let outString = ''
-  const length = 7
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789'
+  const blockLength = 6
+  const blockCount = 3
 
-  for (let i = 0; i < length; i++) {
-    outString += alphabet[Math.floor(Math.random() * alphabet.length)]
-  }
+  const randomBlock = () =>
+    Array.from({ length: blockLength }, () =>
+      chars.charAt(Math.floor(Math.random() * chars.length))
+    ).join('')
 
-  return outString
+  return Array.from({ length: blockCount }, randomBlock).join('-')
 }

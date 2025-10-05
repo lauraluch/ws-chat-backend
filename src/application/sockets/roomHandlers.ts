@@ -9,12 +9,14 @@ export function registerRoomHandlers(io: Server, socket: Socket, roomService: Ro
 
     const users = Array.from(room.users.values()).map((u) => ({
       userId: u.userId,
+      socketId: u.socketId,
       username: u.username,
     }))
 
     io.to(roomCode).emit('room_state', {
       code: room.code,
       ownerName: room.ownerName,
+      ownerSocketId: room.ownerSocketId,
       ownerPresent: room.users.has(room.ownerId),
       users,
       messages: room.messages,
@@ -31,7 +33,7 @@ export function registerRoomHandlers(io: Server, socket: Socket, roomService: Ro
 
     socket.join(code)
     emitRoomState(code)
-    ack?.({ ok: true, code, username })
+    ack?.({ ok: true, code, user })
   })
 
   socket.on('join_room', (payload: { username: string; code: string }, ack?: Function) => {
@@ -44,8 +46,10 @@ export function registerRoomHandlers(io: Server, socket: Socket, roomService: Ro
     if (!user) return ack?.({ ok: false, error: 'ROOM_NOT_FOUND' })
 
     socket.join(code)
-    emitRoomState(code)
-    ack?.({ ok: true, code })
+    const room = roomService.getRoom(code)
+    const ownerSocketId = room?.ownerSocketId || null
+
+    ack?.({ ok: true, code, user, ownerSocketId })
   })
 
   socket.on('send_message', (payload: { text: string }) => {
