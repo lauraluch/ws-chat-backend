@@ -8,4 +8,5 @@ export type Room = {
   ownerSocketId: string
   users: Map<string, User>
   messages: Message[]
+  createdAt: string
 }

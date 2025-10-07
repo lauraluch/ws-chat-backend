@@ -18,6 +18,8 @@ export class RoomService {
   }
 
   createRoom(code: string, ownerSocketId: string, ownerName: string, user: User): Room {
+    const now = new Date()
+
     const room: Room = {
       code,
       ownerId: generateCommonId(),
@@ -25,6 +27,7 @@ export class RoomService {
       ownerName,
       users: new Map<string, User>([[ownerSocketId, user]]),
       messages: [],
+      createdAt: now?.toISOString(),
     }
     this.rooms.set(code, room)
     this.socketToRoom.set(ownerSocketId, code)

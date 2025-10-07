@@ -20,6 +20,7 @@ export function registerRoomHandlers(io: Server, socket: Socket, roomService: Ro
       ownerPresent: room.users.has(room.ownerId),
       users,
       messages: room.messages,
+      createdAt: room.createdAt,
     })
   }
 
