@@ -1,7 +1,7 @@
 export function generateRoomCode(): string {
   const chars = 'abcdefghijklmnopqrstuvwxyz0123456789'
-  const blockLength = 4
-  const blockCount = 3
+  const blockLength = 3
+  const blockCount = 2
 
   const randomBlock = () =>
     Array.from({ length: blockLength }, () =>
